@@ -190,6 +190,75 @@
 
     .skill-group { margin-bottom: 0.6rem; }
     .skill-label { font-weight: 400; color: #2a2520; }
+
+    /* Projects accordion */
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7a7060;
+      margin: 2.5rem 0 0.75rem;
+    }
+
+    .projects { border-top: 1px solid #e8dfd0; }
+
+    .project-item {
+      border-bottom: 1px solid #e8dfd0;
+    }
+
+    .project-item summary {
+      font-size: 0.95rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: #2a2520;
+      padding: 0.75rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-item summary::before { display: none; }
+
+    .project-item summary .proj-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .project-item summary .proj-arrow {
+      font-size: 0.8rem;
+      color: #c8bfa0;
+      transition: transform 0.2s ease;
+    }
+
+    .project-item[open] summary .proj-arrow { transform: rotate(90deg); }
+
+    .project-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #9c9070;
+      background: #f0ede4;
+      border: 1px solid #ddd8c8;
+      border-radius: 3px;
+      padding: 1px 6px;
+    }
+
+    .project-body {
+      padding: 0 0 1rem 1.2rem;
+      font-size: 0.9rem;
+      color: #3b342c;
+      line-height: 1.7;
+    }
+
+    .project-body .proj-links {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.82rem;
+    }
   </style>
 </head>
 <body>
@@ -234,7 +303,7 @@
     </details>
 
     <details>
-      <summary>Experience</summary>
+      <summary>Research Experience</summary>
       <div class="toggle-body">
 
         <div class="entry">
@@ -299,6 +368,108 @@
         </div>
         <div class="entry">
           Bhimani, S., et al. "The Simons Observatory: Deployment and current configuration of the Observatory Control System for SAT-MF1 and data access software systems." <a href="#" target="_blank">Millimeter, Submillimeter, and Far-Infrared Detectors and Instrumentation for Astronomy XII. Vol. 13102. SPIE, 2024.</a>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
+  <p class="section-label">Projects</p>
+  <div class="projects">
+
+    <details class="project-item">
+      <summary>
+        <span class="proj-left">
+          <span class="proj-arrow">›</span>
+          PANOSETI_FoM
+        </span>
+        <span class="project-tag">Astrophysics</span>
+      </summary>
+      <div class="project-body">
+        Large-scale Python pipeline computing a figure-of-merit over ~3M sky directions by integrating 3D stellar density and dust extinction models (HEALPix, healpy). Built for PANOSETI telescope target field selection.
+        <div class="proj-links">
+          <a href="https://github.com/alj010/PANOSETI_FoM" target="_blank">github</a>
+        </div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary>
+        <span class="proj-left">
+          <span class="proj-arrow">›</span>
+          Simons-NSBP
+        </span>
+        <span class="project-tag">Astrophysics</span>
+      </summary>
+      <div class="project-body">
+        Statistical signal processing and noise-modeling pipelines for Simons Observatory CMB detector time-series data. Contributed to the observatory instrumentation stack; co-authored SPIE 2024.
+        <div class="proj-links">
+          <a href="https://github.com/alj010/Simons-NSBP" target="_blank">github</a>
+          <a href="#" target="_blank">paper</a>
+        </div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary>
+        <span class="proj-left">
+          <span class="proj-arrow">›</span>
+          S-NSBP
+        </span>
+        <span class="project-tag">Astrophysics</span>
+      </summary>
+      <div class="project-body">
+        Add description here.
+        <div class="proj-links">
+          <a href="https://github.com/alj010/S-NSBP" target="_blank">github</a>
+        </div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary>
+        <span class="proj-left">
+          <span class="proj-arrow">›</span>
+          dust-filaments
+        </span>
+        <span class="project-tag">Astrophysics</span>
+      </summary>
+      <div class="project-body">
+        Add description here.
+        <div class="proj-links">
+          <a href="https://github.com/alj010/dust-filaments" target="_blank">github</a>
+        </div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary>
+        <span class="proj-left">
+          <span class="proj-arrow">›</span>
+          Matched_Filter
+        </span>
+        <span class="project-tag">Signal Processing</span>
+      </summary>
+      <div class="project-body">
+        Add description here.
+        <div class="proj-links">
+          <a href="https://github.com/alj010/Matched_Filter" target="_blank">github</a>
+        </div>
+      </div>
+    </details>
+
+    <details class="project-item">
+      <summary>
+        <span class="proj-left">
+          <span class="proj-arrow">›</span>
+          msu-reu-2021
+        </span>
+        <span class="project-tag">Astrophysics</span>
+      </summary>
+      <div class="project-body">
+        Montana State University Solar Physics REU, summer 2021.
+        <div class="proj-links">
+          <a href="https://github.com/alj010/msu-reu-2021" target="_blank">github</a>
         </div>
       </div>
     </details>
