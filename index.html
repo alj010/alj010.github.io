@@ -191,73 +191,97 @@
     .skill-group { margin-bottom: 0.6rem; }
     .skill-label { font-weight: 400; color: #2a2520; }
 
-    /* Projects accordion */
+    /* Projects */
     .section-label {
       font-size: 0.8rem;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #7a7060;
-      margin: 2.5rem 0 0.75rem;
+      margin: 2.5rem 0 0.9rem;
     }
 
-    .projects { border-top: 1px solid #e8dfd0; }
-
-    .project-item {
-      border-bottom: 1px solid #e8dfd0;
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.2rem;
     }
 
-    .project-item summary {
-      font-size: 0.95rem;
+    .pill {
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #7a7060;
+      background: transparent;
+      border: 1px solid #ddd8c8;
+      border-radius: 20px;
+      padding: 3px 12px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      font-family: inherit;
+    }
+
+    .pill:hover { border-color: #b0a888; color: #4e4525; }
+
+    .pill.active {
+      background: #2a2520;
+      color: #fafaf7;
+      border-color: #2a2520;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .project-card {
+      border: 1px solid #e8dfd0;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      background: #fdfcf8;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      transition: border-color 0.15s;
+    }
+
+    .project-card:hover { border-color: #c8bfa0; }
+
+    .project-card.hidden { display: none; }
+
+    .card-title {
+      font-size: 0.9rem;
       font-weight: 400;
-      letter-spacing: 0;
-      text-transform: none;
-      color: #2a2520;
-      padding: 0.75rem 0;
+      color: #1a1612;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: #6b6055;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-top: 0.4rem;
     }
 
-    .project-item summary::before { display: none; }
-
-    .project-item summary .proj-left {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .project-item summary .proj-arrow {
-      font-size: 0.8rem;
-      color: #c8bfa0;
-      transition: transform 0.2s ease;
-    }
-
-    .project-item[open] summary .proj-arrow { transform: rotate(90deg); }
-
-    .project-tag {
-      font-size: 0.7rem;
+    .card-tag {
+      font-size: 0.68rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: #9c9070;
-      background: #f0ede4;
-      border: 1px solid #ddd8c8;
-      border-radius: 3px;
-      padding: 1px 6px;
     }
 
-    .project-body {
-      padding: 0 0 1rem 1.2rem;
-      font-size: 0.9rem;
-      color: #3b342c;
-      line-height: 1.7;
-    }
-
-    .project-body .proj-links {
-      margin-top: 0.5rem;
+    .card-links {
       display: flex;
-      gap: 1rem;
-      font-size: 0.82rem;
+      gap: 0.75rem;
+      font-size: 0.78rem;
     }
   </style>
 </head>
@@ -375,106 +399,88 @@
   </div>
 
   <p class="section-label">Projects</p>
-  <div class="projects">
 
-    <details class="project-item">
-      <summary>
-        <span class="proj-left">
-          <span class="proj-arrow">›</span>
-          PANOSETI_FoM
-        </span>
-        <span class="project-tag">Astrophysics</span>
-      </summary>
-      <div class="project-body">
-        Large-scale Python pipeline computing a figure-of-merit over ~3M sky directions by integrating 3D stellar density and dust extinction models (HEALPix, healpy). Built for PANOSETI telescope target field selection.
-        <div class="proj-links">
-          <a href="https://github.com/alj010/PANOSETI_FoM" target="_blank">github</a>
-        </div>
+  <div class="filter-pills">
+    <button class="pill active" data-filter="all">All</button>
+    <button class="pill" data-filter="astrophysics">Astrophysics</button>
+    <button class="pill" data-filter="signal-processing">Signal Processing</button>
+    <button class="pill" data-filter="quant-ml">Quant / ML</button>
+  </div>
+
+  <div class="project-grid">
+
+    <div class="project-card" data-tags="astrophysics">
+      <div class="card-title">PANOSETI_FoM</div>
+      <div class="card-desc">Large-scale pipeline computing a figure-of-merit over ~3M sky directions, integrating 3D stellar density and dust extinction models for PANOSETI target field selection.</div>
+      <div class="card-footer">
+        <span class="card-tag">Astrophysics</span>
+        <span class="card-links"><a href="https://github.com/alj010/PANOSETI_FoM" target="_blank">github</a></span>
       </div>
-    </details>
+    </div>
 
-    <details class="project-item">
-      <summary>
-        <span class="proj-left">
-          <span class="proj-arrow">›</span>
-          Simons-NSBP
-        </span>
-        <span class="project-tag">Astrophysics</span>
-      </summary>
-      <div class="project-body">
-        Statistical signal processing and noise-modeling pipelines for Simons Observatory CMB detector time-series data. Contributed to the observatory instrumentation stack; co-authored SPIE 2024.
-        <div class="proj-links">
+    <div class="project-card" data-tags="astrophysics signal-processing">
+      <div class="card-title">Simons-NSBP</div>
+      <div class="card-desc">Signal processing and noise-modeling pipelines for Simons Observatory CMB detector time-series data. Co-authored SPIE 2024.</div>
+      <div class="card-footer">
+        <span class="card-tag">Astrophysics</span>
+        <span class="card-links">
           <a href="https://github.com/alj010/Simons-NSBP" target="_blank">github</a>
           <a href="#" target="_blank">paper</a>
-        </div>
-      </div>
-    </details>
-
-    <details class="project-item">
-      <summary>
-        <span class="proj-left">
-          <span class="proj-arrow">›</span>
-          S-NSBP
         </span>
-        <span class="project-tag">Astrophysics</span>
-      </summary>
-      <div class="project-body">
-        Add description here.
-        <div class="proj-links">
-          <a href="https://github.com/alj010/S-NSBP" target="_blank">github</a>
-        </div>
       </div>
-    </details>
+    </div>
 
-    <details class="project-item">
-      <summary>
-        <span class="proj-left">
-          <span class="proj-arrow">›</span>
-          dust-filaments
-        </span>
-        <span class="project-tag">Astrophysics</span>
-      </summary>
-      <div class="project-body">
-        Add description here.
-        <div class="proj-links">
-          <a href="https://github.com/alj010/dust-filaments" target="_blank">github</a>
-        </div>
+    <div class="project-card" data-tags="astrophysics signal-processing">
+      <div class="card-title">S-NSBP</div>
+      <div class="card-desc">Add description here.</div>
+      <div class="card-footer">
+        <span class="card-tag">Astrophysics</span>
+        <span class="card-links"><a href="https://github.com/alj010/S-NSBP" target="_blank">github</a></span>
       </div>
-    </details>
+    </div>
 
-    <details class="project-item">
-      <summary>
-        <span class="proj-left">
-          <span class="proj-arrow">›</span>
-          Matched_Filter
-        </span>
-        <span class="project-tag">Signal Processing</span>
-      </summary>
-      <div class="project-body">
-        Add description here.
-        <div class="proj-links">
-          <a href="https://github.com/alj010/Matched_Filter" target="_blank">github</a>
-        </div>
+    <div class="project-card" data-tags="astrophysics">
+      <div class="card-title">dust-filaments</div>
+      <div class="card-desc">Add description here.</div>
+      <div class="card-footer">
+        <span class="card-tag">Astrophysics</span>
+        <span class="card-links"><a href="https://github.com/alj010/dust-filaments" target="_blank">github</a></span>
       </div>
-    </details>
+    </div>
 
-    <details class="project-item">
-      <summary>
-        <span class="proj-left">
-          <span class="proj-arrow">›</span>
-          msu-reu-2021
-        </span>
-        <span class="project-tag">Astrophysics</span>
-      </summary>
-      <div class="project-body">
-        Montana State University Solar Physics REU, summer 2021.
-        <div class="proj-links">
-          <a href="https://github.com/alj010/msu-reu-2021" target="_blank">github</a>
-        </div>
+    <div class="project-card" data-tags="signal-processing">
+      <div class="card-title">Matched_Filter</div>
+      <div class="card-desc">Add description here.</div>
+      <div class="card-footer">
+        <span class="card-tag">Signal Processing</span>
+        <span class="card-links"><a href="https://github.com/alj010/Matched_Filter" target="_blank">github</a></span>
       </div>
-    </details>
+    </div>
+
+    <div class="project-card" data-tags="astrophysics">
+      <div class="card-title">msu-reu-2021</div>
+      <div class="card-desc">Montana State University Solar Physics REU, summer 2021.</div>
+      <div class="card-footer">
+        <span class="card-tag">Astrophysics</span>
+        <span class="card-links"><a href="https://github.com/alj010/msu-reu-2021" target="_blank">github</a></span>
+      </div>
+    </div>
 
   </div>
+
+  <script>
+    document.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filter = pill.dataset.filter;
+        document.querySelectorAll('.project-card').forEach(card => {
+          const tags = card.dataset.tags.split(' ');
+          card.classList.toggle('hidden', filter !== 'all' && !tags.includes(filter));
+        });
+      });
+    });
+  </script>
 
   <div class="photos">
     <div class="photo-slot">
