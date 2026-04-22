@@ -114,6 +114,82 @@
       opacity: 0.35;
       stroke: #9c9070;
     }
+
+    /* Toggles */
+    details {
+      border-top: 1px solid #e8dfd0;
+      padding: 0.75rem 0;
+    }
+
+    details:last-of-type {
+      border-bottom: 1px solid #e8dfd0;
+    }
+
+    summary {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7a7060;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::before {
+      content: '+';
+      font-size: 1rem;
+      font-weight: 300;
+      color: #c8bfa0;
+      width: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    details[open] summary::before { content: '−'; }
+
+    .toggle-body {
+      padding: 1rem 0 0.5rem 1.2rem;
+      font-size: 0.92rem;
+      color: #3b342c;
+      line-height: 1.7;
+    }
+
+    .toggle-body p { margin-bottom: 0.6rem; }
+
+    .toggle-body .entry {
+      margin-bottom: 1.1rem;
+    }
+
+    .toggle-body .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      font-weight: 400;
+      color: #2a2520;
+    }
+
+    .toggle-body .entry-date {
+      font-size: 0.8rem;
+      color: #9c9070;
+      white-space: nowrap;
+    }
+
+    .toggle-body ul {
+      margin: 0.3rem 0 0 1rem;
+      padding: 0;
+    }
+
+    .toggle-body li { margin-bottom: 0.25rem; }
+
+    .skill-group { margin-bottom: 0.6rem; }
+    .skill-label { font-weight: 400; color: #2a2520; }
   </style>
 </head>
 <body>
@@ -146,6 +222,89 @@
   Outside of research, I work at the intersection of AI and finance as a quantitative researcher and ML engineer. With a strong foundation in Python, C++, and deep learning built through large-scale data pipelines, anomaly detection, and work on a quant research team, I bring a rigorous, physics-trained eye to financial problems. My projects span end-to-end quantitative trading systems, NLP-based sentiment analysis, ensemble signal modeling, and automated backtesting to generate and evaluate alpha signals from market data.
   </p>
  
+  <div style="margin: 2.5rem 0;">
+
+    <details>
+      <summary>Skills</summary>
+      <div class="toggle-body">
+        <div class="skill-group"><span class="skill-label">Programming:</span> Python (Pandas, NumPy, scikit-learn, PyTorch), C++ (STL, Boost), SQL, Linux, Bash, Git, Docker, API development &amp; integration, parallel computing, web scraping (BeautifulSoup, Selenium), Flask</div>
+        <div class="skill-group"><span class="skill-label">ML / Stats:</span> Tree-based models, ensemble methods, deep learning (CNNs, RNNs, LSTMs, Transformers, GNNs, Diffusion), NLP (BERT, GPT, Seq2Seq)</div>
+        <div class="skill-group"><span class="skill-label">Financial &amp; Tools:</span> Derivatives (options, futures, swaps), fixed income, equities, commodities, cryptocurrencies, Bloomberg Terminal</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>Experience</summary>
+      <div class="toggle-body">
+
+        <div class="entry">
+          <div class="entry-header">
+            <span><a href="https://oirlab.ucsd.edu/" target="_blank">UCSD OIR Lab</a></span>
+            <span class="entry-date">Apr 2025 – present</span>
+          </div>
+          <ul>
+            <li>Award → <a href="#" target="_blank">High Energy Physics Consortium for Advanced Training Fellowship</a></li>
+            <li>Built a large-scale sky survey optimization pipeline in Python (HEALPix, NumPy, healpy) computing a figure-of-merit over ~3M directions by integrating 3D stellar density and dust extinction models.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span>UCSD Cosmology Group</span>
+            <span class="entry-date">Aug 2022 – Apr 2025</span>
+          </div>
+          <ul>
+            <li>Award → <a href="#" target="_blank">UC San Diego Sloan Scholars Fellowship</a></li>
+            <li>Developed statistical signal processing and noise-modeling pipelines for CMB detector time-series data, contributing to the Simons Observatory instrumentation stack (co-authored SPIE 2024).</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span>NASA Goddard Space Flight Center &amp; NASA GISS</span>
+            <span class="entry-date">Aug 2021 – Aug 2022</span>
+          </div>
+          <ul>
+            <li>Awards: NASA Sally Ride Scholarship, <a href="https://spacegeneration.org/" target="_blank">NASA Space Generation Advisory Council Scholarship</a></li>
+            <li>Performed statistical analysis of large-scale geophysical time-series from satellite remote sensing, developing Python workflows for dataset ingestion, anomaly detection, and trend modeling.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span>Cal Poly Humboldt – Gravitational Physics Lab</span>
+            <span class="entry-date">Feb 2019 – Jul 2022</span>
+          </div>
+          <ul>
+            <li>Award: Cal-Bridge Program Scholarship</li>
+            <li>Optimized an active servo-leveling control system for a precision short-range gravity experiment using numerical modeling and sensor feedback analysis; published in J. Undergrad. Rep. Phys. (2023).</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span><a href="#" target="_blank">Montana State University Solar Physics REU</a></span>
+            <span class="entry-date">Jun – Aug 2021</span>
+          </div>
+        </div>
+
+      </div>
+    </details>
+
+    <details>
+      <summary>Publications</summary>
+      <div class="toggle-body">
+        <div class="entry">
+          Johnson, A., Rogers, C., Dunkley, N., Gengo, M., Hoyle C.D., "Optimization of an Active Leveling Scheme for a Short-Range Gravity Experiment." <a href="#" target="_blank">J. Undergrad. Rep. Phys. 33, 100002 (2023)</a>
+        </div>
+        <div class="entry">
+          Bhimani, S., et al. "The Simons Observatory: Deployment and current configuration of the Observatory Control System for SAT-MF1 and data access software systems." <a href="#" target="_blank">Millimeter, Submillimeter, and Far-Infrared Detectors and Instrumentation for Astronomy XII. Vol. 13102. SPIE, 2024.</a>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
   <div class="photos">
     <div class="photo-slot">
       <img src="timelapse1.gif" alt="timelapse 1" />
