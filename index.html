@@ -287,6 +287,12 @@
     .icon-link { display: inline-flex; align-items: center; }
     .icon-link svg { width: 16px; height: 16px; fill: #3d9e88; transition: fill 0.15s; }
     .icon-link:hover svg { fill: #2a7060; }
+
+    @media (max-width: 600px) {
+      body { padding: 48px 20px 80px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .photos { gap: 10px; }
+    }
   </style>
 </head>
 <body>
