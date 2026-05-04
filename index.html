@@ -93,28 +93,6 @@
 
     .photo-slot:hover img { transform: scale(1.03); }
 
-    .photo-slot .placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #80b8a8;
-      background: #f0f2f0;
-    }
-
-    .photo-slot .placeholder svg {
-      width: 22px;
-      height: 22px;
-      opacity: 0.35;
-      stroke: #70a898;
-    }
-
     /* Toggles */
     details {
       border-top: 1px solid #c8e8dc;
@@ -161,9 +139,7 @@
 
     .toggle-body p { margin-bottom: 0.6rem; }
 
-    .toggle-body .entry {
-      margin-bottom: 1.1rem;
-    }
+    .toggle-body .entry { margin-bottom: 1.1rem; }
 
     .toggle-body .entry-header {
       display: flex;
@@ -236,6 +212,7 @@
       gap: 12px;
     }
 
+    /* ── Project card ── */
     .project-card {
       border: 1px solid #d8e8e0;
       border-radius: 6px;
@@ -244,10 +221,31 @@
       display: flex;
       flex-direction: column;
       gap: 0.3rem;
-      transition: border-color 0.15s;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      position: relative;
+      cursor: pointer;
     }
 
-    .project-card:hover { border-color: #80c4b0; }
+    .project-card:hover { 
+      border-color: #80c4b0; 
+      box-shadow: 0 2px 12px rgba(61,158,136,0.08);
+    }
+
+    /* show "click to expand" hint on cards that have modal data */
+    .project-card[data-has-modal]::after {
+      content: '↗';
+      position: absolute;
+      top: 0.7rem;
+      right: 0.8rem;
+      font-size: 0.75rem;
+      color: #a0ccc0;
+      transition: color 0.15s;
+      pointer-events: none;
+    }
+
+    .project-card[data-has-modal]:hover::after {
+      color: #3d9e88;
+    }
 
     .project-card.hidden { display: none; }
 
@@ -255,6 +253,7 @@
       font-size: 0.9rem;
       font-weight: 400;
       color: #1a2820;
+      padding-right: 1.2rem; /* room for ↗ */
     }
 
     .card-desc {
@@ -291,10 +290,171 @@
     .icon-link svg { width: 16px; height: 16px; fill: #3d9e88; transition: fill 0.15s; }
     .icon-link:hover svg { fill: #2a7060; }
 
+    /* ── Modal overlay ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 35, 30, 0.55);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.18s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 10px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+      animation: slideUp 0.2s ease;
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 1.4rem 1.6rem 1rem;
+      border-bottom: 1px solid #e8f0ec;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .modal-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1a2820;
+      line-height: 1.4;
+    }
+
+    .modal-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #4a88b8;
+      margin-top: 0.25rem;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: #a0b8b0;
+      cursor: pointer;
+      padding: 0 0 0 0.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: color 0.15s;
+      font-family: inherit;
+    }
+
+    .modal-close:hover { color: #3d9e88; }
+
+    .modal-body {
+      padding: 1.2rem 1.6rem 1.6rem;
+    }
+
+    /* Media grid inside modal */
+    .modal-media {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 1.2rem;
+    }
+
+    .modal-media.one   { grid-template-columns: 1fr; }
+    .modal-media.two   { grid-template-columns: 1fr 1fr; }
+    .modal-media.three { grid-template-columns: 1fr 1fr 1fr; }
+
+    .modal-media-item {
+      border-radius: 6px;
+      overflow: hidden;
+      background: #f0f4f2;
+      border: 1px solid #d8e8e0;
+    }
+
+    .modal-media-item img,
+    .modal-media-item video {
+      width: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+    .modal-media-caption {
+      font-size: 0.72rem;
+      color: #80a898;
+      padding: 0.35rem 0.6rem 0.45rem;
+      line-height: 1.4;
+    }
+
+    /* Placeholder for missing media */
+    .modal-media-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: #a0b8b0;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .modal-details {
+      font-size: 0.88rem;
+      color: #383c38;
+      line-height: 1.7;
+    }
+
+    .modal-details ul {
+      margin: 0.4rem 0 0.8rem 1.1rem;
+      padding: 0;
+    }
+
+    .modal-details li { margin-bottom: 0.3rem; }
+
+    .modal-links {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid #e8f0ec;
+      font-size: 0.82rem;
+      align-items: center;
+    }
+
     @media (max-width: 600px) {
       body { padding: 48px 20px 80px; }
       .project-grid { grid-template-columns: 1fr; }
       .photos { gap: 10px; }
+      .modal-media.two,
+      .modal-media.three { grid-template-columns: 1fr; }
+      .modal { border-radius: 8px; }
     }
   </style>
 </head>
@@ -303,7 +463,7 @@
   <h1>Alyssa Johnson</h1>
 
   <div class="infobar">
-    U.S. Citizen aite
+    U.S. Citizen
     <span class="sep">|</span>
     San Diego, CA
     <span class="sep">|</span>
@@ -320,13 +480,12 @@
 
   <hr class="divider" />
 
- 
   <p>
     I'm a Ph.D. candidate in <strong>Astrophysics at UCSD</strong>. 
     I earned my bachelor's degree in <strong>Physics</strong> from Cal Poly Humboldt, 
     as well as an MFA and BFA in Painting & Drawing from The Ohio State University and
      Temple University, respectively. A highlight of my undergraduate career was completing a systems
-     egineering internship at <strong>NASA Goddard Space Flight Center</strong> under the <strong>NASA Sally Ride
+     engineering internship at <strong>NASA Goddard Space Flight Center</strong> under the <strong>NASA Sally Ride
        Fellowship</strong> and the <strong><a href="https://spacegeneration.org/announcement-of-the-sgac-nasa-scan-scholarship-2022" target="_blank">NASA Space Generation Advisory Council (SGAC) Scholarship</a></strong>. 
        I supported the <strong>Laser Communications Relay
          Demonstration (LCRD)</strong> mission by developing experiments that demonstrated
@@ -346,9 +505,6 @@
         to generate and evaluate alpha signals from market data.
   </p>
 
-
-  
- 
   <div style="margin: 2.5rem 0;">
 
     <details>
@@ -363,7 +519,6 @@
     <details>
       <summary>Research Experience</summary>
       <div class="toggle-body">
-
         <div class="entry">
           <div class="entry-header">
             <span><a href="https://oirlab.ucsd.edu/" target="_blank">UCSD OIR Lab</a></span>
@@ -374,7 +529,6 @@
             <li>Built a large-scale sky survey optimization pipeline in Python (HEALPix, NumPy, healpy) computing a figure-of-merit over ~3M directions by integrating 3D stellar density and dust extinction models.</li>
           </ul>
         </div>
-
         <div class="entry">
           <div class="entry-header">
             <span>UCSD Cosmology Group</span>
@@ -385,7 +539,6 @@
             <li>Developed statistical signal processing and noise-modeling pipelines for CMB detector time-series data, contributing to the Simons Observatory instrumentation stack (co-authored SPIE 2024).</li>
           </ul>
         </div>
-
         <div class="entry">
           <div class="entry-header">
             <span>NASA Goddard Space Flight Center &amp; NASA GISS</span>
@@ -396,7 +549,6 @@
             <li>Delivered single-user relay and handover experiments that demonstrated user data services for optical communications, defining spacecraft configurations and scheduling parameters to support LCRD mission operations.</li>
           </ul>
         </div>
-
         <div class="entry">
           <div class="entry-header">
             <span>Cal Poly Humboldt – Gravitational Physics Lab</span>
@@ -407,14 +559,12 @@
             <li>Optimized an active servo-leveling control system for a precision short-range gravity experiment using numerical modeling and sensor feedback analysis; published in J. Undergrad. Rep. Phys. (2023).</li>
           </ul>
         </div>
-
         <div class="entry">
           <div class="entry-header">
             <span><a href="https://solar.physics.montana.edu/www/reu/2021/ajohnson/" target="_blank">Montana State University Solar Physics REU</a></span>
             <span class="entry-date">Jun – Aug 2021</span>
           </div>
         </div>
-
       </div>
     </details>
 
@@ -443,7 +593,8 @@
 
   <div class="project-grid">
 
-    <div class="project-card" data-tags="quant-ml signal-processing">
+    <!-- ═══ CARD: MySQL HeatWave ═══ -->
+    <div class="project-card" data-tags="quant-ml signal-processing" data-has-modal data-modal="modal-heatwave">
       <div class="card-title">In-Database ML Forecasting with MySQL HeatWave</div>
       <div class="card-desc">
         <ul style="margin: 0.2rem 0 0 1rem; padding: 0;">
@@ -454,11 +605,12 @@
       </div>
       <div class="card-footer">
         <span class="card-tag">Quant / ML · Signal Processing</span>
-        <span class="card-links"><a href="https://github.com/alj010/ts-heatwave-bench" target="_blank" class="icon-link" aria-label="GitHub"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a></span>
+        <span class="card-links"><a href="https://github.com/alj010/ts-heatwave-bench" target="_blank" class="icon-link" aria-label="GitHub" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a></span>
       </div>
     </div>
 
-    <div class="project-card" data-tags="quant-ml">
+    <!-- ═══ CARD: SPY Vol Benchmark ═══ -->
+    <div class="project-card" data-tags="quant-ml" data-has-modal data-modal="modal-spy">
       <div class="card-title">SPY Volatility Forecasting: ML Architecture Benchmark</div>
       <div class="card-desc">
         <ul style="margin: 0.2rem 0 0 1rem; padding: 0;">
@@ -469,11 +621,12 @@
       </div>
       <div class="card-footer">
         <span class="card-tag">Quant / ML</span>
-        <span class="card-links"><a href="https://github.com/alj010/spy-vol-benchmark" target="_blank" class="icon-link" aria-label="GitHub"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a></span>
+        <span class="card-links"><a href="https://github.com/alj010/spy-vol-benchmark" target="_blank" class="icon-link" aria-label="GitHub" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a></span>
       </div>
     </div>
 
-    <div class="project-card" data-tags="physics">
+    <!-- ═══ CARD: PANOSETI FoM ═══ -->
+    <div class="project-card" data-tags="physics" data-has-modal data-modal="modal-panoseti">
       <div class="card-title">Stellar Density × Detection Probability FoM for PANOSETI</div>
       <div class="card-desc">
         <ul style="margin: 0.2rem 0 0 1rem; padding: 0;">
@@ -484,11 +637,12 @@
       </div>
       <div class="card-footer">
         <span class="card-tag">Physics</span>
-        <span class="card-links"><a href="https://github.com/alj010/PANOSETI_FoM" target="_blank" class="icon-link" aria-label="GitHub"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a></span>
+        <span class="card-links"><a href="https://github.com/alj010/PANOSETI_FoM" target="_blank" class="icon-link" aria-label="GitHub" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a></span>
       </div>
     </div>
 
-    <div class="project-card" data-tags="physics signal-processing">
+    <!-- ═══ CARD: Gravity Lab ═══ -->
+    <div class="project-card" data-tags="physics signal-processing" data-has-modal data-modal="modal-gravity">
       <div class="card-title">Active Servo-Leveling Tilt Analysis</div>
       <div class="card-desc">
         <ul style="margin: 0.2rem 0 0 1rem; padding: 0;">
@@ -500,13 +654,14 @@
       <div class="card-footer">
         <span class="card-tag">Physics</span>
         <span class="card-links">
-            <a href="https://github.com/alj010/gravity_lab" target="_blank" class="icon-link" aria-label="GitHub"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-            <a href="https://pubs.aip.org/aip/jurp/article/33/1/100002/2929427/Optimization-of-an-Active-Leveling-Scheme-for-a" target="_blank">paper</a>
-          </span>
+          <a href="https://github.com/alj010/gravity_lab" target="_blank" class="icon-link" aria-label="GitHub" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://pubs.aip.org/aip/jurp/article/33/1/100002/2929427/Optimization-of-an-Active-Leveling-Scheme-for-a" target="_blank" onclick="event.stopPropagation()">paper</a>
+        </span>
       </div>
     </div>
 
-    <div class="project-card" data-tags="physics signal-processing">
+    <!-- ═══ CARD: MSU REU ═══ -->
+    <div class="project-card" data-tags="physics signal-processing" data-has-modal data-modal="modal-msu">
       <div class="card-title">Solar UV Irradiance Spectroscopy – MSU REU</div>
       <div class="card-desc">
         <ul style="margin: 0.2rem 0 0 1rem; padding: 0;">
@@ -518,12 +673,13 @@
       <div class="card-footer">
         <span class="card-tag">Physics</span>
         <span class="card-links">
-            <a href="https://github.com/alj010/msu-reu-2021" target="_blank" class="icon-link" aria-label="GitHub"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-            <a href="https://solar.physics.montana.edu/www/reu/2021/ajohnson/" target="_blank">website</a>
-          </span>
+          <a href="https://github.com/alj010/msu-reu-2021" target="_blank" class="icon-link" aria-label="GitHub" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://solar.physics.montana.edu/www/reu/2021/ajohnson/" target="_blank" onclick="event.stopPropagation()">website</a>
+        </span>
       </div>
     </div>
 
+    <!-- ═══ CARD: Planck Harmonic ═══ -->
     <div class="project-card" data-tags="physics signal-processing">
       <div class="card-title">Planck × ACTPol Harmonic-Space Map Analysis</div>
       <div class="card-desc">
@@ -539,6 +695,7 @@
       </div>
     </div>
 
+    <!-- ═══ CARD: Dust Filaments ═══ -->
     <div class="project-card" data-tags="physics signal-processing">
       <div class="card-title">Cross-Correlation of Planck Dust Maps with ACT SZ Clusters</div>
       <div class="card-desc">
@@ -554,39 +711,202 @@
       </div>
     </div>
 
-    <!-- <div class="project-card" data-tags="physics">
-      <div class="card-title">Geophysical Time-Series Analysis – NASA GISS</div>
-      <div class="card-desc">
-        <ul style="margin: 0.2rem 0 0 1rem; padding: 0;">
-          <li>Performed <strong>statistical analysis</strong> of large-scale <strong>geophysical time-series</strong> derived from satellite remote sensing, developing Python workflows for multi-source dataset ingestion and preprocessing.</li>
-          <li>Built <strong>anomaly detection</strong> and <strong>trend modeling</strong> pipelines to identify statistically significant signals in Earth observation data archives.</li>
-          <li>Demonstrates experience in <strong>satellite remote sensing data analysis</strong>, geophysical time-series processing, and reproducible scientific computing workflows.</li>
-        </ul>
-      </div>
-      <div class="card-footer">
-        <span class="card-tag">Physics</span>
-        <span class="card-links"><a href="#" target="_blank" class="icon-link" aria-label="GitHub"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a></span>
-      </div>
-    </div> -->
-
-    <!-- <div class="project-card" data-tags="signal-processing physics">
-      <div class="card-title">Harmonic-Space Matched Filtering for CMB Point Sources</div>
-      <div class="card-desc">
-        <ul style="margin: 0.2rem 0 0 1rem; padding: 0;">
-          <li>Implemented a <strong>2D matched filter</strong> in harmonic space to detect and recover injected point sources (200 mJy, 90 GHz) in simulated <strong>CMB temperature maps</strong>.</li>
-          <li>Built both <strong>flat-sky</strong> (<code style="font-size:0.78rem;">pixell</code>/<code style="font-size:0.78rem;">enmap</code>) and <strong>full-sky</strong> (<code style="font-size:0.78rem;">HEALPix</code>) variants, modeling a 2 arcmin Gaussian beam and atmospheric 1/f noise power spectrum.</li>
-          <li>Demonstrates proficiency in <strong>CMB map-level signal processing</strong>, flux recovery validation, and Fourier-domain filtering using standard mm-wave astronomy libraries.</li>
-        </ul>
-      </div>
-      <div class="card-footer">
-        <span class="card-tag">Signal Processing</span>
-        <span class="card-links"><a href="https://github.com/alj010/Matched_Filter" target="_blank" class="icon-link" aria-label="GitHub"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a></span>
-      </div>
-    </div> -->
-
   </div>
 
+  <!-- ════════════════════════════════════════════
+       MODALS — add/edit media and text here
+  ════════════════════════════════════════════ -->
+
+  <!-- MySQL HeatWave modal -->
+  <div class="modal-overlay" id="modal-heatwave" role="dialog" aria-modal="true" aria-label="MySQL HeatWave project details">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">In-Database ML Forecasting with MySQL HeatWave</div>
+          <div class="modal-tag">Quant / ML · Signal Processing</div>
+        </div>
+        <button class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <!-- 
+          MEDIA SECTION — replace src values with your actual file paths.
+          Use class="two" for 2 items, "three" for 3, "one" for 1.
+          Captions are optional.
+        -->
+        <div class="modal-media two">
+          <div class="modal-media-item">
+            <!-- REPLACE: your plot image -->
+            <div class="modal-media-placeholder">plot coming soon</div>
+            <div class="modal-media-caption">Latency comparison: HeatWave vs Python baseline (ms)</div>
+          </div>
+          <div class="modal-media-item">
+            <!-- REPLACE: your gif or second plot, e.g. <img src="heatwave_forecast.gif" alt="..."> -->
+            <div class="modal-media-placeholder">gif coming soon</div>
+            <div class="modal-media-caption">Rolling forecast output</div>
+          </div>
+        </div>
+        <div class="modal-details">
+          <ul>
+            <li>End-to-end ML pipeline built entirely inside MySQL HeatWave — data ingestion, feature engineering, model training, and inference without leaving the database.</li>
+            <li>Benchmarked HeatWave AutoML against XGBoost and ARIMA baselines on the same time series targets; evaluated RMSE, MAE, and inference latency.</li>
+            <li>Key finding: HeatWave AutoML matched or beat Python baselines on accuracy while offering significant latency reductions at scale.</li>
+          </ul>
+        </div>
+        <div class="modal-links">
+          <a href="https://github.com/alj010/ts-heatwave-bench" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPY Vol Benchmark modal -->
+  <div class="modal-overlay" id="modal-spy" role="dialog" aria-modal="true" aria-label="SPY volatility benchmark project details">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">SPY Volatility Forecasting: ML Architecture Benchmark</div>
+          <div class="modal-tag">Quant / ML</div>
+        </div>
+        <button class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media two">
+          <div class="modal-media-item">
+            <!-- REPLACE: e.g. <img src="spy_vol_results.png" alt="benchmark results"> -->
+            <div class="modal-media-placeholder">benchmark plot coming soon</div>
+            <div class="modal-media-caption">RMSE by model architecture</div>
+          </div>
+          <div class="modal-media-item">
+            <!-- REPLACE: e.g. <img src="spy_forecast.gif" alt="rolling forecast"> -->
+            <div class="modal-media-placeholder">forecast gif coming soon</div>
+            <div class="modal-media-caption">Realized vs. predicted volatility (rolling window)</div>
+          </div>
+        </div>
+        <div class="modal-details">
+          <ul>
+            <li>Compared XGBoost, LightGBM, LSTM, GRU, and a Temporal Transformer on 5-day realized SPY volatility using a shared feature set and evaluation harness.</li>
+            <li>Features include lagged returns, rolling realized vol, VIX term structure, and options-implied metrics.</li>
+            <li>Temporal Transformer achieved lowest out-of-sample RMSE; gradient boosting models offered best interpretability-accuracy tradeoff.</li>
+          </ul>
+        </div>
+        <div class="modal-links">
+          <a href="https://github.com/alj010/spy-vol-benchmark" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANOSETI FoM modal -->
+  <div class="modal-overlay" id="modal-panoseti" role="dialog" aria-modal="true" aria-label="PANOSETI FoM project details">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Stellar Density × Detection Probability FoM for PANOSETI</div>
+          <div class="modal-tag">Physics</div>
+        </div>
+        <button class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media one">
+          <div class="modal-media-item">
+            <!-- REPLACE: e.g. <img src="panoseti_fom_skymap.png" alt="FoM sky map"> -->
+            <div class="modal-media-placeholder" style="aspect-ratio:2/1;">sky map plot coming soon</div>
+            <div class="modal-media-caption">Figure of Merit across ~3M Galactic directions (Mollweide projection)</div>
+          </div>
+        </div>
+        <div class="modal-details">
+          <ul>
+            <li>Computed a detection-probability-weighted FoM integrating multi-component stellar density (thin/thick disk, bulge, halo) against 3D dust extinction from Bayestar19 maps.</li>
+            <li>Pipeline processes ~3M HEALPix directions using vectorized NumPy operations — full run completes in under 10 minutes on a laptop.</li>
+            <li>Output sky maps directly inform PANOSETI telescope pointing strategy for maximizing SETI detection probability.</li>
+          </ul>
+        </div>
+        <div class="modal-links">
+          <a href="https://github.com/alj010/PANOSETI_FoM" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gravity Lab modal -->
+  <div class="modal-overlay" id="modal-gravity" role="dialog" aria-modal="true" aria-label="Gravity lab project details">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Active Servo-Leveling Tilt Analysis</div>
+          <div class="modal-tag">Physics · Signal Processing</div>
+        </div>
+        <button class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media two">
+          <div class="modal-media-item">
+            <!-- REPLACE: e.g. <img src="tilt_calibration.png" alt="tilt calibration curve"> -->
+            <div class="modal-media-placeholder">calibration plot coming soon</div>
+            <div class="modal-media-caption">Voltage-tilt calibration curve with quadratic fit (0–5 V)</div>
+          </div>
+          <div class="modal-media-item">
+            <!-- REPLACE: e.g. <img src="servo_response.gif" alt="servo response animation"> -->
+            <div class="modal-media-placeholder">gif coming soon</div>
+            <div class="modal-media-caption">Servo leveling response over time</div>
+          </div>
+        </div>
+        <div class="modal-details">
+          <ul>
+            <li>Translated the original Mathematica analysis pipeline to Python, enabling reproducible calibration runs and automated figure generation.</li>
+            <li>Quadratic fit to voltage-tilt data achieved sub-μrad residuals across the full 0–5 V control range.</li>
+            <li>Published as first author in J. Undergrad. Rep. Phys. (2023); analysis code archived on GitHub.</li>
+          </ul>
+        </div>
+        <div class="modal-links">
+          <a href="https://github.com/alj010/gravity_lab" target="_blank">GitHub →</a>
+          <a href="https://pubs.aip.org/aip/jurp/article/33/1/100002/2929427/" target="_blank">Paper →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MSU REU modal -->
+  <div class="modal-overlay" id="modal-msu" role="dialog" aria-modal="true" aria-label="MSU REU project details">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Solar UV Irradiance Spectroscopy – MSU REU</div>
+          <div class="modal-tag">Physics · Signal Processing</div>
+        </div>
+        <button class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media two">
+          <div class="modal-media-item">
+            <!-- REPLACE: e.g. <img src="solar_spectrum.png" alt="solar UV spectrum"> -->
+            <div class="modal-media-placeholder">spectrum plot coming soon</div>
+            <div class="modal-media-caption">C IV (1548 Å) & Ne VIII (770 Å) irradiance spectra</div>
+          </div>
+          <div class="modal-media-item">
+            <!-- REPLACE: e.g. <img src="solar_timeseries.gif" alt="time series animation"> -->
+            <div class="modal-media-placeholder">time-series gif coming soon</div>
+            <div class="modal-media-caption">UV irradiance time-series animation across observing dates</div>
+          </div>
+        </div>
+        <div class="modal-details">
+          <ul>
+            <li>Analyzed UARS SOLSTICE satellite data spanning multiple solar cycles to characterize UV irradiance variability in transition region and coronal spectral lines.</li>
+            <li>Built IDL pipelines for multi-date spectral ingestion, wavelength calibration, and automated figure generation — adapted into Python for reproducibility.</li>
+            <li>Full project writeup and poster available on the MSU REU site.</li>
+          </ul>
+        </div>
+        <div class="modal-links">
+          <a href="https://github.com/alj010/msu-reu-2021" target="_blank">GitHub →</a>
+          <a href="https://solar.physics.montana.edu/www/reu/2021/ajohnson/" target="_blank">Project site →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter pills script -->
   <script>
+    // Filter pills
     document.querySelectorAll('.pill').forEach(pill => {
       pill.addEventListener('click', () => {
         document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
@@ -597,6 +917,49 @@
           card.classList.toggle('hidden', filter !== 'all' && !tags.includes(filter));
         });
       });
+    });
+
+    // Modal system
+    function openModal(id) {
+      const overlay = document.getElementById(id);
+      if (!overlay) return;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // focus close button for accessibility
+      overlay.querySelector('.modal-close')?.focus();
+    }
+
+    function closeModal(overlay) {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Open on card click
+    document.querySelectorAll('.project-card[data-has-modal]').forEach(card => {
+      card.addEventListener('click', (e) => {
+        // don't open if user clicked a link inside the card
+        if (e.target.closest('a')) return;
+        openModal(card.dataset.modal);
+      });
+    });
+
+    // Close on × button
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay')));
+    });
+
+    // Close on backdrop click
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal(overlay);
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(closeModal);
+      }
     });
   </script>
 
