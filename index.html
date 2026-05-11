@@ -280,10 +280,9 @@
       margin: -1rem -1.1rem 0.65rem;
       height: 108px;
       border-radius: 5px 5px 0 0;
-      background-repeat: no-repeat;
+      overflow: hidden;
       -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
       mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-      transition: background-size 0.5s ease;
     }
 
     .card-img img {
@@ -292,20 +291,20 @@
       object-fit: cover;
       object-position: top center;
       display: block;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s ease;
     }
 
     .project-card:hover .card-img img { transform: scale(1.02); }
 
-    /* HeatWave card: zoom to normalized performance heatmap (top-right of dashboard) */
-    .card-img--heatwave {
-      background-image: url('heatwave_dashboard.png');
-      background-size: 350% auto;
-      background-position: right top;
+    /* HeatWave: scale from top-right to zoom into the normalized performance heatmap */
+    .card-img--heatwave img {
+      object-position: right top;
+      transform: scale(3.5);
+      transform-origin: right top;
     }
 
-    .project-card:hover .card-img--heatwave {
-      background-size: 368% auto;
+    .project-card:hover .card-img--heatwave img {
+      transform: scale(3.7);
     }
 
     .card-footer {
@@ -625,7 +624,7 @@
     </details>
 
     <details>
-      <summary>Publications</summary>
+      <summary>Publications → <a href="https://scholar.google.com/citations?user=4wZ5vHMAAAAJ&hl=en" target="_blank">ORCiD</a></summary>
       <div class="toggle-body">
         <div class="entry">
           Johnson, A., Rogers, C., Dunkley, N., Gengo, M., Hoyle C.D., "Optimization of an Active Leveling Scheme for a Short-Range Gravity Experiment." <a href="#" target="_blank">J. Undergrad. Rep. Phys. 33, 100002 (2023)</a>
@@ -651,7 +650,9 @@
 
     <!-- ═══ CARD: MySQL HeatWave ═══ -->
     <div class="project-card" data-tags="quant-ml signal-processing" data-modal="modal-heatwave" data-has-modal>
-      <div class="card-img card-img--heatwave" role="img" aria-label="Normalized performance heatmap from benchmark dashboard"></div>
+      <div class="card-img card-img--heatwave">
+        <img src="heatwave_dashboard.png" alt="Normalized performance heatmap" />
+      </div>
       <div class="card-title">In-Database ML Forecasting with MySQL HeatWave</div>
       <div class="card-desc">Benchmarked MySQL HeatWave AutoML against XGBoost, LightGBM, LSTM, and GRU on time series forecasting — evaluating accuracy and inference latency across in-database and external compute.</div>
       <div class="card-footer">
