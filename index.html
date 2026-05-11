@@ -245,7 +245,7 @@
     .project-card[data-modal]::after {
       content: '↗';
       position: absolute;
-      top: calc(108px + 0.5rem);
+      top: calc(130px + 0.5rem);
       right: 0.8rem;
       font-size: 0.75rem;
       color: #a0ccc0;
@@ -278,11 +278,12 @@
 
     .card-img {
       margin: -1rem -1.1rem 0.65rem;
-      height: 108px;
+      height: 130px;
       border-radius: 5px 5px 0 0;
       overflow: hidden;
-      -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+      position: relative;
+      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
     }
 
     .card-img img {
@@ -296,15 +297,19 @@
 
     .project-card:hover .card-img img { transform: scale(1.02); }
 
-    /* HeatWave: scale from top-right to zoom into the normalized performance heatmap */
+    /* HeatWave: absolutely size the image to 350% width anchored top-right,
+       revealing the normalized performance heatmap through overflow:hidden */
     .card-img--heatwave img {
-      object-position: right top;
-      transform: scale(3.5);
-      transform-origin: right top;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 160%;
+      height: auto;
+      transition: width 0.5s ease;
     }
 
     .project-card:hover .card-img--heatwave img {
-      transform: scale(3.7);
+      width: 168%;
     }
 
     .card-footer {
