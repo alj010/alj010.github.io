@@ -242,7 +242,7 @@
     }
 
     /* show "click to expand" hint on cards that have modal data */
-    .project-card[data-has-modal]::after {
+    .project-card[data-modal]::after {
       content: '↗';
       position: absolute;
       top: calc(108px + 0.5rem);
@@ -253,7 +253,7 @@
       pointer-events: none;
     }
 
-    .project-card[data-has-modal]:hover::after {
+    .project-card[data-modal]:hover::after {
       color: #3d9e88;
     }
 
@@ -982,9 +982,8 @@
     }
 
     // Open on card click
-    document.querySelectorAll('.project-card[data-has-modal]').forEach(card => {
+    document.querySelectorAll('.project-card[data-modal]').forEach(card => {
       card.addEventListener('click', (e) => {
-        // don't open if user clicked a link inside the card
         if (e.target.closest('a')) return;
         openModal(card.dataset.modal);
       });
