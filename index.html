@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alyssa Johnson</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -31,6 +31,15 @@
     }
 
     p { margin-bottom: 1.25rem; color: #383c38; }
+
+    p.bio {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #444840;
+      letter-spacing: 0.01em;
+    }
 
     a { color: #3d9e88; text-decoration: underline; text-underline-offset: 3px; }
     a:hover { color: #2a7060; }
@@ -480,7 +489,7 @@
 
   <hr class="divider" />
 
-  <p>
+  <p class="bio">
     I’m a <strong>Ph.D. candidate at UCSD</strong> working in <strong>experimental physics,
     optical instrumentation, and high-dimensional data analysis</strong>. Outside of the lab,
     I work as a <strong>quantitative developer</strong> building <strong>ML systems for signal
@@ -491,7 +500,7 @@
     quantitative trading systems, NLP-based sentiment analysis, ensemble modeling, and automated
     backtesting</strong> to generate and evaluate alpha signals from market data.
   </p>
-  <p>
+  <p class="bio">
     I earned my bachelor’s degree in <strong>Physics</strong> from <strong>California State
     Polytechnic University, Humboldt</strong>, as well as an MFA and BFA in Painting &amp; Drawing
     from <strong>The Ohio State University</strong> and <strong>Temple University</strong>,
