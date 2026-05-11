@@ -233,10 +233,11 @@
       transition: border-color 0.15s, box-shadow 0.15s;
       position: relative;
       cursor: pointer;
+      overflow: hidden;
     }
 
-    .project-card:hover { 
-      border-color: #80c4b0; 
+    .project-card:hover {
+      border-color: #80c4b0;
       box-shadow: 0 2px 12px rgba(61,158,136,0.08);
     }
 
@@ -244,7 +245,7 @@
     .project-card[data-has-modal]::after {
       content: '↗';
       position: absolute;
-      top: 0.7rem;
+      top: calc(108px + 0.5rem);
       right: 0.8rem;
       font-size: 0.75rem;
       color: #a0ccc0;
@@ -262,7 +263,7 @@
       font-size: 0.9rem;
       font-weight: 400;
       color: #1a2820;
-      padding-right: 1.2rem; /* room for ↗ */
+      padding-right: 1.2rem;
     }
 
     .card-desc {
@@ -277,9 +278,12 @@
 
     .card-img {
       margin: -1rem -1.1rem 0.65rem;
-      overflow: hidden;
       height: 108px;
       border-radius: 5px 5px 0 0;
+      background-repeat: no-repeat;
+      -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+      transition: background-size 0.5s ease;
     }
 
     .card-img img {
@@ -292,6 +296,17 @@
     }
 
     .project-card:hover .card-img img { transform: scale(1.02); }
+
+    /* HeatWave card: zoom to normalized performance heatmap (top-right of dashboard) */
+    .card-img--heatwave {
+      background-image: url('heatwave_dashboard.png');
+      background-size: 350% auto;
+      background-position: right top;
+    }
+
+    .project-card:hover .card-img--heatwave {
+      background-size: 368% auto;
+    }
 
     .card-footer {
       display: flex;
@@ -636,9 +651,7 @@
 
     <!-- ═══ CARD: MySQL HeatWave ═══ -->
     <div class="project-card" data-tags="quant-ml signal-processing" data-modal="modal-heatwave" data-has-modal>
-      <div class="card-img">
-        <img src="heatwave_dashboard.png" alt="Benchmark dashboard comparing ARIMA, XGBoost, LightGBM, LSTM, and GRU across MAE, RMSE, MAPE, directional accuracy, and inference latency" />
-      </div>
+      <div class="card-img card-img--heatwave" role="img" aria-label="Normalized performance heatmap from benchmark dashboard"></div>
       <div class="card-title">In-Database ML Forecasting with MySQL HeatWave</div>
       <div class="card-desc">Benchmarked MySQL HeatWave AutoML against XGBoost, LightGBM, LSTM, and GRU on time series forecasting — evaluating accuracy and inference latency across in-database and external compute.</div>
       <div class="card-footer">
