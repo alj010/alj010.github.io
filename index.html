@@ -275,6 +275,24 @@
     .card-desc li { color: #2e2e2e; }
     .card-desc li:last-child { color: #506060; }
 
+    .card-img {
+      margin: -1rem -1.1rem 0.65rem;
+      overflow: hidden;
+      height: 108px;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .card-img img { transform: scale(1.02); }
+
     .card-footer {
       display: flex;
       justify-content: space-between;
@@ -507,7 +525,7 @@
     respectively. A highlight of my undergraduate career was completing a systems engineering internship
     at <strong>NASA Goddard Space Flight Center</strong> under the <strong>NASA Sally Ride Fellowship</strong>
     and the <a href="https://spacegeneration.org/announcement-of-the-sgac-nasa-scan-scholarship-2022" target="_blank">Space Generation Advisory Council (SGAC) Scholarship</a>.
-    I supported the Laser Communications Relay Demonstration (LCRD) mission by
+    As a NASA intern I supported the Laser Communications Relay Demonstration (LCRD) mission by
     developing experiments that demonstrated user data services for the satellite’s optical
     communications system. My current research is conducted with Dr. Shelley Wright
     in UCSD’s Optical &amp; Infrared Laboratory, where, I'm supported by the
@@ -617,15 +635,12 @@
   <div class="project-grid">
 
     <!-- ═══ CARD: MySQL HeatWave ═══ -->
-    <div class="project-card" data-tags="quant-ml signal-processing" data-modal="modal-heatwave">
-      <div class="card-title">In-Database ML Forecasting with MySQL HeatWave</div>
-      <div class="card-desc">
-        <ul style="margin: 0.2rem 0 0 1rem; padding: 0;">
-          <li>Constructed an <strong>in-database ML forecasting pipeline</strong> using <strong>MySQL HeatWave</strong>, benchmarking time series model performance against external <strong>Python baselines</strong>.</li>
-          <li>Evaluated tradeoffs in <strong>latency, accuracy, and scalability</strong> across in-database and external inference environments.</li>
-          <li>Demonstrates experience in <strong>database-native ML</strong>, time series forecasting, and systematic benchmarking of distributed vs. local compute architectures.</li>
-        </ul>
+    <div class="project-card" data-tags="quant-ml signal-processing" data-modal="modal-heatwave" data-has-modal>
+      <div class="card-img">
+        <img src="heatwave_dashboard.png" alt="Benchmark dashboard comparing ARIMA, XGBoost, LightGBM, LSTM, and GRU across MAE, RMSE, MAPE, directional accuracy, and inference latency" />
       </div>
+      <div class="card-title">In-Database ML Forecasting with MySQL HeatWave</div>
+      <div class="card-desc">Benchmarked MySQL HeatWave AutoML against XGBoost, LightGBM, LSTM, and GRU on time series forecasting — evaluating accuracy and inference latency across in-database and external compute.</div>
       <div class="card-footer">
         <span class="card-tag">Quant / ML · Signal Processing</span>
         <span class="card-links"><a href="https://github.com/alj010/ts-heatwave-bench" target="_blank" class="icon-link" aria-label="GitHub" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a></span>
@@ -751,28 +766,24 @@
         <button class="modal-close" aria-label="Close">×</button>
       </div>
       <div class="modal-body">
-        <!-- 
-          MEDIA SECTION — replace src values with your actual file paths.
-          Use class="two" for 2 items, "three" for 3, "one" for 1.
-          Captions are optional.
-        -->
-        <div class="modal-media two">
+        <div class="modal-media one">
           <div class="modal-media-item">
-            <!-- REPLACE: your plot image -->
-            <div class="modal-media-placeholder">plot coming soon</div>
-            <div class="modal-media-caption">Latency comparison: HeatWave vs Python baseline (ms)</div>
-          </div>
-          <div class="modal-media-item">
-            <!-- REPLACE: your gif or second plot, e.g. <img src="heatwave_forecast.gif" alt="..."> -->
-            <div class="modal-media-placeholder">gif coming soon</div>
-            <div class="modal-media-caption">Rolling forecast output</div>
+            <img src="heatwave_dashboard.png" alt="Benchmark dashboard: ARIMA, XGBoost, LightGBM, LSTM, GRU compared across MAE, RMSE, MAPE, directional accuracy, inference latency, and normalized performance heatmap" />
+            <div class="modal-media-caption">Multi-model benchmark — accuracy metrics, inference latency, and normalized performance heatmap across ARIMA, XGBoost, LightGBM, LSTM, and GRU</div>
           </div>
         </div>
-        <div class="modal-details">
+        <div class="modal-media one" style="margin-top: 10px;">
+          <div class="modal-media-item">
+            <img src="heatwave_training.png" alt="Training loss curves: LSTM vs GRU over 50 epochs" />
+            <div class="modal-media-caption">Training loss (MSE) over 50 epochs — LSTM vs. GRU</div>
+          </div>
+        </div>
+        <div class="modal-details" style="margin-top: 1rem;">
           <ul>
-            <li>End-to-end ML pipeline built entirely inside MySQL HeatWave — data ingestion, feature engineering, model training, and inference without leaving the database.</li>
-            <li>Benchmarked HeatWave AutoML against XGBoost and ARIMA baselines on the same time series targets; evaluated RMSE, MAE, and inference latency.</li>
-            <li>Key finding: HeatWave AutoML matched or beat Python baselines on accuracy while offering significant latency reductions at scale.</li>
+            <li>Built an end-to-end forecasting pipeline inside MySQL HeatWave — data ingestion, feature engineering, model training, and inference without leaving the database.</li>
+            <li>Benchmarked HeatWave AutoML against XGBoost, LightGBM, LSTM, and GRU on the same time series targets using a shared evaluation harness; evaluated MAE, RMSE, MAPE, directional accuracy, and inference latency.</li>
+            <li>Gradient boosting models (XGBoost, LightGBM) achieved lowest error metrics; GRU offered the best accuracy-to-latency tradeoff among deep learning architectures. ARIMA served as the statistical baseline.</li>
+            <li>Demonstrated that in-database ML with HeatWave AutoML is viable for rapid prototyping, with competitive accuracy and significantly lower operational overhead versus external Python pipelines.</li>
           </ul>
         </div>
         <div class="modal-links">
