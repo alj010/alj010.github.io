@@ -655,7 +655,7 @@
             <span><a href="https://solar.physics.montana.edu/www/reu/2021/ajohnson/" target="_blank">Montana State University Solar Physics REU</a></span>
             <span class="entry-date">Jun – Aug 2021</span>
           </div>
-        </div>
+        </div
       </div>
     </details>
 
@@ -748,7 +748,7 @@
     <!-- ═══ CARD: MSU REU ═══ -->
     <div class="project-card" data-tags="physics signal-processing" data-modal="modal-msu">
       <div class="card-img">
-        <img src="fullsun_CIV_02041996.png" alt="Full disk peak intensity in C IV – February 4, 1996" />
+        <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"><source src="fullsun_CIV_02041996_web.mp4" type="video/mp4"></video>
         <div class="card-title">Solar UV Irradiance Spectroscopy – MSU REU</div>
       </div>
       <div class="card-desc">Analyzed UARS SOLSTICE satellite data to characterize solar UV irradiance in C IV (1548 Å) and Ne VIII (770 Å); built IDL pipelines for multi-date spectral ingestion and time-series animations.</div>
@@ -956,7 +956,7 @@
       <div class="modal-body">
         <div class="modal-media one">
           <div class="modal-media-item">
-            <video id="msu-video" src="fullsun_CIV_02041996_web.mp4" controls loop playsinline style="width:100%;display:block;"></video>
+            <img src="fullsun_CIV_02041996.png" alt="Full disk peak intensity in C IV – February 4, 1996" />
             <div class="modal-media-caption">Full disk peak intensity in C IV (1548 Å) — February 4, 1996 (UARS SOLSTICE)</div>
           </div>
         </div>
@@ -997,15 +997,11 @@
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
       overlay.querySelector('.modal-close')?.focus();
-      const video = overlay.querySelector('video');
-      if (video) { video.currentTime = 0; video.play(); }
     }
 
     function closeModal(overlay) {
       overlay.classList.remove('open');
       document.body.style.overflow = '';
-      const video = overlay.querySelector('video');
-      if (video) { video.pause(); }
     }
 
     // Open modal on card click
