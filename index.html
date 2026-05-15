@@ -745,6 +745,30 @@
       </div>
     </div>
 
+    <!-- ═══ CARD: NASA GISS ═══ -->
+    <div class="project-card" data-tags="physics signal-processing" data-modal="modal-nasa-giss">
+      <div class="card-img">
+        <img src="nasa_giss_01.png" alt="Components of reflectance vs. viewing zenith angle — AccuRT simulation" />
+        <div class="card-title">Snow Properties Retrieval – NASA GISS</div>
+      </div>
+      <div class="card-desc">Developed a polarimetric retrieval scheme for polar snowpack using AccuRT radiative transfer (Fortran) and a Python inversion wrapper, targeting POLDER and MODIS satellite sensors.</div>
+      <div class="card-footer">
+        <span class="card-tag">Physics · Signal Processing</span>
+        <span class="card-links">
+          <a href="https://github.com/alj010/snow" target="_blank" class="icon-link" aria-label="GitHub" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        </span>
+      </div>
+    </div>
+
+    <!-- ═══ CARD: NASA GSFC ═══ -->
+    <div class="project-card" data-tags="physics" data-modal="modal-nasa-gsfc">
+      <div class="card-title">Optical Communications Experiments – NASA GSFC (LCRD)</div>
+      <div class="card-desc">Delivered single-user relay and handover experiments supporting LCRD mission operations — defining spacecraft configurations and scheduling parameters for optical communications user data services.</div>
+      <div class="card-footer">
+        <span class="card-tag">Physics</span>
+      </div>
+    </div>
+
     <!-- ═══ CARD: MSU REU ═══ -->
     <div class="project-card" data-tags="physics signal-processing" data-modal="modal-msu">
       <div class="card-img">
@@ -970,6 +994,65 @@
         <div class="modal-links">
           <a href="https://github.com/alj010/msu-reu-2021" target="_blank">GitHub →</a>
           <a href="https://solar.physics.montana.edu/www/reu/2021/ajohnson/" target="_blank">Project site →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NASA GISS modal -->
+  <div class="modal-overlay" id="modal-nasa-giss" role="dialog" aria-modal="true" aria-label="NASA GISS project details">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Snow Properties Retrieval – NASA GISS</div>
+          <div class="modal-tag">Physics · Signal Processing</div>
+        </div>
+        <button class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media two">
+          <div class="modal-media-item">
+            <img src="nasa_giss_01.png" alt="Components of reflectance vs. viewing zenith angle" />
+            <div class="modal-media-caption">I, Q, U reflectance components vs. viewing zenith angle (θᵥ) across 7 POLDER/MODIS wavelength bands — AccuRT forward simulation</div>
+          </div>
+          <div class="modal-media-item">
+            <img src="nasa_giss_02.png" alt="Snow figure 02" />
+            <div class="modal-media-caption"></div>
+          </div>
+        </div>
+        <div class="modal-details">
+          <ul>
+            <li>Contributed to a new polarimetric retrieval scheme for polar snowpack exploiting both polarization state (POLDER) and intensity-only measurements (MODIS) to improve snow property characterization.</li>
+            <li>Integrated a Fortran-based AccuRT radiative transfer engine with a Python inversion wrapper; ran forward simulations across multiple wavelength bands and viewing geometries to validate the retrieval pipeline.</li>
+            <li>Retrieval targets: grain shape and size, concentration of light-absorbing impurities (LAIs), and overlying aerosol properties — with a full error budget on all state parameters.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NASA GSFC modal -->
+  <div class="modal-overlay" id="modal-nasa-gsfc" role="dialog" aria-modal="true" aria-label="NASA GSFC LCRD project details">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Optical Communications Experiments – NASA GSFC (LCRD)</div>
+          <div class="modal-tag">Physics</div>
+        </div>
+        <button class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media one">
+          <div class="modal-media-item">
+            <div class="modal-media-placeholder">media coming soon</div>
+          </div>
+        </div>
+        <div class="modal-details">
+          <ul>
+            <li>Delivered single-user relay and handover experiments demonstrating user data services for NASA's Laser Communications Relay Demonstration (LCRD) satellite.</li>
+            <li>Defined spacecraft configurations and scheduling parameters to support LCRD mission operations for optical communications links.</li>
+            <li>Awards: NASA Sally Ride Scholarship · <a href="https://spacegeneration.org/announcement-of-the-sgac-nasa-scan-scholarship-2022" target="_blank">NASA Space Generation Advisory Council (SGAC) Scholarship</a></li>
+          </ul>
         </div>
       </div>
     </div>
