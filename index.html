@@ -524,6 +524,22 @@
       align-items: center;
     }
 
+    .nasa-badge {
+      position: absolute;
+      top: 0.55rem;
+      left: 0.65rem;
+      z-index: 10;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      color: #fff;
+      background: #e8001d;
+      border-radius: 3px;
+      padding: 2px 7px;
+      pointer-events: none;
+      font-family: 'Inter', sans-serif;
+    }
+
     @media (max-width: 600px) {
       body { padding: 48px 20px 80px; }
       .project-grid { grid-template-columns: 1fr; }
@@ -683,6 +699,7 @@
     <button class="pill" data-filter="physics">Physics</button>
     <button class="pill" data-filter="signal-processing">Signal Processing</button>
     <button class="pill" data-filter="quant-ml">Quant / ML</button>
+    <button class="pill" data-filter="nasa">NASA</button>
   </div>
 
   <div class="project-grid">
@@ -746,9 +763,10 @@
     </div>
 
     <!-- ═══ CARD: NASA GISS ═══ -->
-    <div class="project-card" data-tags="physics signal-processing" data-modal="modal-nasa-giss">
+    <div class="project-card" data-tags="physics signal-processing nasa" data-modal="modal-nasa-giss">
       <div class="card-img">
         <img src="nasa_giss_01.png" alt="Components of reflectance vs. viewing zenith angle — AccuRT simulation" />
+        <span class="nasa-badge">NASA</span>
         <div class="card-title">Snow Properties Retrieval – NASA GISS</div>
       </div>
       <div class="card-desc">Developed a polarimetric retrieval scheme for polar snowpack using AccuRT radiative transfer (Fortran) and a Python inversion wrapper, targeting POLDER and MODIS satellite sensors.</div>
@@ -761,7 +779,8 @@
     </div>
 
     <!-- ═══ CARD: NASA GSFC ═══ -->
-    <div class="project-card" data-tags="physics" data-modal="modal-nasa-gsfc">
+    <div class="project-card" data-tags="physics nasa" data-modal="modal-nasa-gsfc" style="position:relative;">
+      <span class="nasa-badge">NASA</span>
       <div class="card-title">Optical Communications Experiments – NASA GSFC (LCRD)</div>
       <div class="card-desc">Delivered single-user relay and handover experiments supporting LCRD mission operations — defining spacecraft configurations and scheduling parameters for optical communications user data services.</div>
       <div class="card-footer">
