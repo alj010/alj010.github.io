@@ -570,7 +570,7 @@
     backtesting to generate and evaluate alpha signals from market data.
   </p>
   <p class="bio">
-    I earned my <strong>B.S. in Physics</strong>from California State Polytechnic University, Humboldt,
+    I earned my <strong>B.S. in Physics</strong> from California State Polytechnic University, Humboldt,
     as well as an MFA and BFA in Painting &amp; Drawing from The Ohio State University and Temple University,
     respectively. A highlight of my undergraduate career was completing a systems engineering internship
     at <strong>NASA Goddard Space Flight Center</strong> under the <strong>NASA Sally Ride Fellowship</strong>
@@ -746,8 +746,11 @@
     </div>
 
     <!-- ═══ CARD: MSU REU ═══ -->
-    <div class="project-card" data-tags="physics signal-processing" data-url="https://solar.physics.montana.edu/www/reu/2021/ajohnson/">
-      <div class="card-title">Solar UV Irradiance Spectroscopy – MSU REU</div>
+    <div class="project-card" data-tags="physics signal-processing" data-modal="modal-msu">
+      <div class="card-img">
+        <img src="fullsun_CIV_02041996.png" alt="Full disk peak intensity in C IV – February 4, 1996" />
+        <div class="card-title">Solar UV Irradiance Spectroscopy – MSU REU</div>
+      </div>
       <div class="card-desc">
         <ul style="margin: 0.2rem 0 0 1rem; padding: 0;">
           <li>Analyzed <strong>UARS SOLSTICE</strong> satellite data to characterize solar UV irradiance across <strong>C IV (1548 Å)</strong> and <strong>Ne VIII (770 Å)</strong> transition region and coronal spectral lines.</li>
@@ -957,16 +960,10 @@
         <button class="modal-close" aria-label="Close">×</button>
       </div>
       <div class="modal-body">
-        <div class="modal-media two">
+        <div class="modal-media one">
           <div class="modal-media-item">
-            <!-- REPLACE: e.g. <img src="solar_spectrum.png" alt="solar UV spectrum"> -->
-            <div class="modal-media-placeholder">spectrum plot coming soon</div>
-            <div class="modal-media-caption">C IV (1548 Å) & Ne VIII (770 Å) irradiance spectra</div>
-          </div>
-          <div class="modal-media-item">
-            <!-- REPLACE: e.g. <img src="solar_timeseries.gif" alt="time series animation"> -->
-            <div class="modal-media-placeholder">time-series gif coming soon</div>
-            <div class="modal-media-caption">UV irradiance time-series animation across observing dates</div>
+            <video id="msu-video" src="fullsun_CIV_02041996.mp4" controls loop playsinline style="width:100%;display:block;"></video>
+            <div class="modal-media-caption">Full disk peak intensity in C IV (1548 Å) — February 4, 1996 (UARS SOLSTICE)</div>
           </div>
         </div>
         <div class="modal-details">
@@ -1005,13 +1002,16 @@
       if (!overlay) return;
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
-      // focus close button for accessibility
       overlay.querySelector('.modal-close')?.focus();
+      const video = overlay.querySelector('video');
+      if (video) { video.currentTime = 0; video.play(); }
     }
 
     function closeModal(overlay) {
       overlay.classList.remove('open');
       document.body.style.overflow = '';
+      const video = overlay.querySelector('video');
+      if (video) { video.pause(); }
     }
 
     // Open modal on card click
