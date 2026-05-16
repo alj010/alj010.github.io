@@ -650,7 +650,42 @@
       text-align: center;
     }
 
-@media (max-width: 600px) {
+/* ── Project chips (bio inline project links) ── */
+    .proj-chip {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.8em;
+      font-weight: 400;
+      background: #eef4f9;
+      color: #4a7fa5;
+      border: 1px solid #b8d4e8;
+      border-radius: 20px;
+      padding: 1px 9px 2px;
+      text-decoration: none;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    a.proj-chip { cursor: pointer; }
+
+    a.proj-chip:hover {
+      background: #d4e8f5;
+      border-color: #4a7fa5;
+      color: #2d5f80;
+      text-decoration: none;
+    }
+
+    .proj-chip--soon {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    @media (max-width: 600px) {
       body { padding: 48px 20px 80px; }
       .project-grid { grid-template-columns: 1fr; }
       .photos { gap: 10px; }
@@ -715,9 +750,7 @@
   <!--Drawing on my background in signal processing, anomaly detection, and large-scale data pipelines
     developed through instrumentation and astrophysics research, I apply a physics-driven
     approach to financial modeling and market analysis. -->
-  My projects span end-to-end quantitative trading systems, NLP-based sentiment
-  analysis, ensemble modeling, and automated backtesting to generate and
-  evaluate alpha signals from market data. I recently joined 
+  <strong>My projects span <span class="proj-chip proj-chip--soon" title="Coming soon">quant trading systems →</span>, <span class="proj-chip proj-chip--soon" title="Coming soon">NLP sentiment →</span>, <a href="#" class="proj-chip" onclick="event.preventDefault();openModal('modal-heatwave')">ensemble ML →</a>, and <span class="proj-chip proj-chip--soon" title="Coming soon">alpha backtesting →</span> — building systems to generate and evaluate alpha signals from market data.</strong> I recently joined 
   <a href="https://triton.quanttrading.org/" target="_blank">Triton Quantitative Trading Club</a> 
   and work as a Lead for the Strategy Development Research Group. 
 </p>
