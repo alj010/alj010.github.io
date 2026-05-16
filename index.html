@@ -533,6 +533,41 @@
       flex-shrink: 0;
     }
 
+    /* ── Highlights bar ── */
+    .highlights-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0 0 2rem;
+    }
+
+    .highlight-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.73rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: #4a7870;
+      background: #eef6f3;
+      border: 1px solid #c0ddd5;
+      border-radius: 20px;
+      padding: 3px 11px;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .highlight-pill:hover { background: #ddf0ea; border-color: #7ab8a8; color: #2a7060; }
+
+    .highlight-pill.pending {
+      color: #b07850;
+      background: #fdf3ec;
+      border-color: #f5c9a0;
+    }
+
+    .highlight-pill.pending:hover { background: #fce8d8; border-color: #fa9f6e; }
+
     /* ── Competitions ── */
     .competition-list {
       display: flex;
@@ -649,6 +684,12 @@
 
   <hr class="divider" />
 
+  <div class="highlights-bar">
+    <span class="highlight-pill">Kaggle — in progress</span>
+    <span class="highlight-pill">Numerai — in progress</span>
+    <a href="https://www.credly.com/org/amazon-web-services/badge/aws-certified-ai-practitioner" target="_blank" class="highlight-pill pending">AWS Certified AI Practitioner — studying</a>
+  </div>
+
   <p class="bio">
   I’m a
   <strong
@@ -696,6 +737,31 @@
 </p>
 
   
+
+  <!-- ── Competitions ── -->
+  <p class="section-label">Competitions</p>
+  <div class="competition-list">
+    <!-- add rows as results come in:
+         <div class="competition-row">
+           <span class="competition-platform">Kaggle</span>
+           <span class="competition-name">Competition Name</span>
+           <span class="competition-result">Top X% · Month YYYY</span>
+         </div>
+    -->
+    <div class="competition-row" style="background:#fafcfb;">
+      <span style="grid-column:1/-1; text-align:center; color:#a0b8b0;">Results incoming — Kaggle &amp; Numerai in progress</span>
+    </div>
+  </div>
+
+  <!-- ── Credentials & Badges ── -->
+  <p class="section-label" style="margin-top:2rem;">Credentials</p>
+  <div class="badge-grid">
+    <a href="https://www.credly.com/org/amazon-web-services/badge/aws-certified-ai-practitioner" target="_blank" class="badge-item" style="text-decoration:none;">
+      <img src="https://images.credly.com/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png" alt="AWS Certified AI Practitioner badge" />
+      <span class="badge-name">AWS Certified AI Practitioner</span>
+      <span class="badge-status">In Progress</span>
+    </a>
+  </div>
 
   <div style="margin: 2.5rem 0;">
 
@@ -937,31 +1003,6 @@
       </div>
     </div>
 
-  </div>
-
-  <!-- ── Competitions ── -->
-  <p class="section-label">Competitions</p>
-  <div class="competition-list">
-    <!-- add rows as results come in:
-         <div class="competition-row">
-           <span class="competition-platform">Kaggle</span>
-           <span class="competition-name">Competition Name</span>
-           <span class="competition-result">Top X% · Month YYYY</span>
-         </div>
-    -->
-    <div class="competition-row" style="color:#a0b8b0; font-size:0.8rem; grid-column:1/-1; justify-content:center; background:#fafcfb;">
-      <span style="grid-column:1/-1; text-align:center; color:#a0b8b0;">Results incoming — Kaggle &amp; Numerai in progress</span>
-    </div>
-  </div>
-
-  <!-- ── Credentials & Badges ── -->
-  <p class="section-label" style="margin-top:2.5rem;">Credentials</p>
-  <div class="badge-grid">
-    <a href="https://www.credly.com/org/amazon-web-services/badge/aws-certified-ai-practitioner" target="_blank" class="badge-item" style="text-decoration:none;">
-      <img src="https://images.credly.com/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png" alt="AWS Certified AI Practitioner badge" />
-      <span class="badge-name">AWS Certified AI Practitioner</span>
-      <span class="badge-status">In Progress</span>
-    </a>
   </div>
 
   <!-- ════════════════════════════════════════════
