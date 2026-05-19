@@ -152,12 +152,25 @@
 
     .toggle-body .entry-header {
       display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      font-weight: 400;
+      color: #252825;
+    }
+
+    .entry-header-row {
+      display: flex;
       justify-content: space-between;
       align-items: baseline;
       flex-wrap: wrap;
       gap: 0.25rem;
-      font-weight: 400;
-      color: #252825;
+    }
+
+    .entry-position {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: #5a8880;
+      font-style: italic;
     }
 
     .toggle-body .entry-date {
@@ -833,8 +846,11 @@
       <div class="toggle-body">
         <div class="entry">
           <div class="entry-header">
-            <span><a href="https://tquantt.com/" target="_blank">UCSD Triton Quantitative Trading Club </a></span> Lead, Strategy Development Research Group
-            <span class="entry-date">March 2026 – present</span>
+            <div class="entry-header-row">
+              <span><a href="https://tquantt.com/" target="_blank">UCSD Triton Quantitative Trading Club</a></span>
+              <span class="entry-date">March 2026 – present</span>
+            </div>
+            <span class="entry-position">Lead, Strategy Development Research Group</span>
           </div>
           <ul>
             <li>Constructing a suite of delta-hedged options strategies in QuantConnect, implementing vega-scaled positioning, IV percentile filtering, and automated Greeks-based entry and exit logic across long/short vega and gamma regimes on SPY.</li>
@@ -842,8 +858,11 @@
         </div>
         <div class="entry">
           <div class="entry-header">
-            <span><a href="https://oirlab.ucsd.edu/" target="_blank">UCSD Optical and Infrared Laboratory</a></span> Graduate Student Researcher
-            <span class="entry-date">Apr 2025 – present</span>
+            <div class="entry-header-row">
+              <span><a href="https://oirlab.ucsd.edu/" target="_blank">UCSD Optical and Infrared Laboratory</a></span>
+              <span class="entry-date">Apr 2025 – present</span>
+            </div>
+            <span class="entry-position">Graduate Student Researcher</span>
           </div>
           <ul>
             <li>Award → <a href="https://hepcat.ucsd.edu/graduate-fellows/" target="_blank">High Energy Physics Consortium for Advanced Training Fellowship</a> → <i>ongoing </i></li>
@@ -856,8 +875,11 @@
         </div>
         <div class="entry">
           <div class="entry-header">
-            <span>UCSD Cosmology Group</span> Graduate Student Researcher
-            <span class="entry-date">Aug 2022 – Apr 2025</span>
+            <div class="entry-header-row">
+              <span>UCSD Cosmology Group</span>
+              <span class="entry-date">Aug 2022 – Apr 2025</span>
+            </div>
+            <span class="entry-position">Graduate Student Researcher</span>
           </div>
           <ul>
             <li>Award → <a href="https://www.gemfellowship.org/gem-fellowship-program/" target="_blank">GEM Fellowship Program</a> 
@@ -866,8 +888,11 @@
         </div>
         <div class="entry">
           <div class="entry-header">
-            <span>NASA Goddard Space Flight Center &amp; NASA GISS</span> NASA GSFC Intern (x3)
-            <span class="entry-date">Aug 2021 – Aug 2022</span>
+            <div class="entry-header-row">
+              <span>NASA Goddard Space Flight Center &amp; NASA GISS</span>
+              <span class="entry-date">Aug 2021 – Aug 2022</span>
+            </div>
+            <span class="entry-position">NASA GSFC Intern (x3)</span>
           </div>
           <ul>
             <li>Awards: NASA Sally Ride Scholarship, <a href="https://spacegeneration.org/announcement-of-the-sgac-nasa-scan-scholarship-2022" target="_blank">NASA Space Generation Advisory Council Scholarship</a></li>
@@ -876,8 +901,11 @@
         </div>
         <div class="entry">
           <div class="entry-header">
-            <span>Cal Poly Humboldt – Gravitational Physics Lab</span> Student Researcher
-            <span class="entry-date">Feb 2019 – Jul 2022</span>
+            <div class="entry-header-row">
+              <span>Cal Poly Humboldt – Gravitational Physics Lab</span>
+              <span class="entry-date">Feb 2019 – Jul 2022</span>
+            </div>
+            <span class="entry-position">Student Researcher</span>
           </div>
           <ul>
             <li>Award: Cal-Bridge Program Scholarship</li>
@@ -886,8 +914,11 @@
         </div>
         <div class="entry">
           <div class="entry-header">
-            <span><a href="https://solar.physics.montana.edu/www/reu/2021/ajohnson/" target="_blank">Montana State University Solar Physics REU</a></span> Student Researcher
-            <span class="entry-date">Jun – Aug 2021</span>
+            <div class="entry-header-row">
+              <span><a href="https://solar.physics.montana.edu/www/reu/2021/ajohnson/" target="_blank">Montana State University Solar Physics REU</a></span>
+              <span class="entry-date">Jun – Aug 2021</span>
+            </div>
+            <span class="entry-position">Student Researcher</span>
           </div>
         </div
       </div>
