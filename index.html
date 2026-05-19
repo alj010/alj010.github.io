@@ -988,6 +988,19 @@
       </div>
     </div>
 
+    <!-- ═══ CARD: QPulse ═══ -->
+    <div class="project-card" data-tags="quant-ml" data-modal="modal-qpulse">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&auto=format" alt="Live trading terminal with candlestick chart" />
+        <div class="card-title">QPulse — Agentic Financial Signal Platform</div>
+      </div>
+      <div class="card-desc">Cloud-native RAG pipeline ingesting financial news, SEC filings, and market data to generate multi-asset signals (equities, fixed income, crypto, derivatives) via LLM agents; deployed on AWS/GCP with Docker/Kubernetes and served through a Flask API and React/TypeScript dashboard.</div>
+      <div class="card-footer">
+        <span class="card-tag">Quant / ML</span>
+        <span class="card-links"></span>
+      </div>
+    </div>
+
     <!-- ═══ CARD: MySQL HeatWave ═══ -->
     <div class="project-card" data-tags="quant-ml signal-processing" data-modal="modal-heatwave" data-has-modal>
       <div class="card-img">
@@ -1366,6 +1379,43 @@
         </div>
         <div class="modal-links">
           <a href="https://github.com/alj010/dust-filaments" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QPulse modal -->
+  <div class="modal-overlay" id="modal-qpulse" role="dialog" aria-modal="true" aria-label="QPulse project details">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">QPulse — Agentic Financial Signal Platform</div>
+          <div class="modal-tag">Quant / ML · Cloud · LLM / RAG</div>
+        </div>
+        <button class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media three">
+          <div class="modal-media-item">
+            <img src="https://images.unsplash.com/photo-1689732888407-310424e3a372?w=900&auto=format" alt="Multi-asset signal output — candlestick chart" />
+            <div class="modal-media-caption">Multi-asset signal output across equities, fixed income, and crypto</div>
+          </div>
+          <div class="modal-media-item">
+            <img src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?w=900&auto=format" alt="LLM-powered RAG pipeline — node graph" />
+            <div class="modal-media-caption">LLM-powered RAG pipeline: embedding, retrieval, and signal generation</div>
+          </div>
+          <div class="modal-media-item">
+            <img src="https://images.unsplash.com/photo-1644088379091-d574269d422f?w=900&auto=format" alt="Cloud data pipeline architecture" />
+            <div class="modal-media-caption">Docker/Kubernetes deployment on AWS/GCP</div>
+          </div>
+        </div>
+        <div class="modal-details">
+          <ul>
+            <li>Built QPulse, a cloud-native agentic platform ingesting financial news, SEC filings, and real-time market data to generate multi-asset signals across equities, fixed income, crypto, and derivatives.</li>
+            <li>Designed a LLM-powered RAG pipeline using HuggingFace embeddings (FinBERT/TensorFlow) and Pinecone vector store; agentic retrieval surfaces context-grounded signals with source attribution.</li>
+            <li>Deployed containerized microservices (Docker + Kubernetes) across AWS and GCP; Flask REST API serves signal endpoints consumed by a React/TypeScript dashboard for real-time visualization.</li>
+            <li>Signal coverage spans equities, fixed income, crypto, and options/derivatives; pipeline supports A/B testing of retrieval strategies and model variants across asset classes.</li>
+          </ul>
         </div>
       </div>
     </div>
